@@ -8,6 +8,7 @@ local FusionAssets = PluginFolder:WaitForChild("FusionAssets")
 local PluginGlobal = require(Utility:WaitForChild("PluginGlobal"))
 local plugin = PluginGlobal.pluginInstance
 
+local constants = require(Utility:WaitForChild("Constants"))
 local waitForDescendant = require(Utility:WaitForChild("WaitForDescendant"))
 local theme = require(Utility:WaitForChild("Theme"))
 local colorEdit = require(Utility:WaitForChild("ColorEdit"))
@@ -62,11 +63,7 @@ local component = function(props)
 
     local colorSpring = Spring(computedColor, 50, 1)
 
-    local ICON_SIZE = 60
-
     local frame = New "ImageButton" {
-        Size = UDim2.fromOffset(ICON_SIZE, ICON_SIZE),
-
         BackgroundColor3 = colorSpring,
         --BackgroundTransparency = 0.9,
         ImageTransparency = 1,
@@ -81,9 +78,9 @@ local component = function(props)
                 AnchorPoint = Vector2.new(0.5, 0.5),
                 Size = Spring(Computed(function()
                     if hovering:get() then
-                        return UDim2.fromOffset(36, 36)
+                        return UDim2.fromOffset(constants.ICON_HOVER_SIZE, constants.ICON_HOVER_SIZE)
                     else
-                        return UDim2.fromOffset(24, 24)
+                        return UDim2.fromOffset(constants.ICON_SIZE, constants.ICON_SIZE)
                     end
                 end), 50, 1),
                 Position = UDim2.fromScale(0.5, 0.5),

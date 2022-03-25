@@ -7,6 +7,7 @@ local FusionAssets = PluginFolder:WaitForChild("FusionAssets")
 local PluginGlobal = require(Utility:WaitForChild("PluginGlobal"))
 local plugin = PluginGlobal.pluginInstance
 
+local constants = require(Utility:WaitForChild("Constants"))
 local waitForDescendant = require(Utility:WaitForChild("WaitForDescendant"))
 local theme = require(Utility:WaitForChild("Theme"))
 local colorEdit = require(Utility:WaitForChild("ColorEdit"))

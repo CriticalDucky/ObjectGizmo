@@ -144,7 +144,7 @@ data.objects = {
         {
             tag = "antiVertexWedge",
             new = find("AntiVertexWedge"),
-            icon = "rbxassetid://9179214562",
+            icon = "rbxassetid://9182519379",
             name = "Anti-Vertex-Wedge"
         },
     
@@ -298,7 +298,7 @@ data.objects = {
         {
             tag = "sign",
             new = find("Sign"),
-            icon = "rbxassetid://9172599726",
+            icon = "rbxassetid://9182504851",
             name = "Sign"
         },
 

@@ -1,6 +1,3 @@
-local WIDGET_SIZE = 60
-local GRANTED_BAR_SPACE = 16
-
 local CoreGui = game:GetService("CoreGui")
 
 local PluginFolder = script.Parent
@@ -11,6 +8,8 @@ local Utility = PluginFolder:WaitForChild("Utility")
 local PluginGlobal = require(Utility:WaitForChild("PluginGlobal"))
 PluginGlobal.give(plugin)
 
+local widgetSize = require(Utility:WaitForChild("WidgetSize"))
+local constants = require(Utility:WaitForChild("Constants"))
 local currentInsertHover = require(Utility:WaitForChild("CurrentInsertHover"))
 
 local Fusion = require(FusionAssets:WaitForChild("Fusion"))
@@ -26,35 +25,38 @@ local pluginBase = Component "PluginBase"
 local pluginEnabled = State(false)
 
 local toolbar do
+    local name = "Critical Suite"
+
     local toolbarValue = CoreGui:FindFirstChild("CriticalSuiteToolbar")
 
     if not toolbarValue then
         toolbarValue = Instance.new("ObjectValue")
         toolbarValue.Name = "CriticalSuiteToolbar"
-        toolbarValue.Value = plugin:CreateToolbar("Critical Suite")
+        toolbarValue.Value = plugin:CreateToolbar(name)
         toolbarValue.Parent = CoreGui
     elseif not toolbarValue.Value then
-        toolbarValue.Value = plugin:CreateToolbar("Critical Suite")
+        toolbarValue.Value = plugin:CreateToolbar(name)
     end
 
     toolbar = toolbarValue.Value
 end
 
-local enableButton = toolbar:CreateButton("OpenObjectGizmo", "Open Objects", "rbxassetid://9149212722", "Open")
+local enableButton = toolbar:CreateButton("OpenObjectGizmo", "Open Objects", "rbxassetid://9149212722", "Object Gizmo")
 enableButton.ClickableWhenViewportHidden = true
 
+local totalSize = constants.BUTTON_SIZE + constants.GRANTED_BAR_SPACE
 local widgetInfo = DockWidgetPluginGuiInfo.new(
     Enum.InitialDockState.Bottom,
     false,
     false,
-    200,
-    WIDGET_SIZE + GRANTED_BAR_SPACE,
-    200,
-    WIDGET_SIZE + GRANTED_BAR_SPACE
+    totalSize,
+    totalSize,
+    totalSize,
+    totalSize
 )
 
 local widget = plugin:CreateDockWidgetPluginGui("ObjectsWidget", widgetInfo)
-widget.Title = "Objects"
+widget.Title = constants.WIDGET_NAME
 
 function enableButtonClicked()
     pluginEnabled:set(not pluginEnabled:get())
@@ -63,8 +65,18 @@ end
 local pluginFrame: Frame = pluginBase (widget)
 
 do
+    widgetSize.size:set(pluginFrame.AbsoluteSize)
+
+    connections:add(pluginFrame.Changed:Connect(function(change)
+        if change == "AbsoluteSize" then
+            widgetSize.size:set(pluginFrame[change])
+        end
+    end))
+end
+
+do
     local accountingValue = 0
-    local text = "Objects"
+    local text = constants.WIDGET_NAME
 
     connections:add(Compat(currentInsertHover):onChange(function()
         local object = currentInsertHover:get()
