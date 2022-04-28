@@ -40,6 +40,11 @@ data.classes = {
         order = 7,
         color = Color3.fromRGB(255, 12, 133)
     },
+
+    dev = {
+        order = 8,
+        color = Color3.fromRGB(166, 12, 255)
+    },
 }
 
 data.objects = {
@@ -163,6 +168,13 @@ data.objects = {
         },
     
         {
+            tag = "roundCornerWedge",
+            new = find("RoundCornerWedge"),
+            icon = "rbxassetid://9483219968",
+            name = "Round Corner Wedge"
+        },
+
+        {
             tag = "halfSphere",
             new = find("HalfSphere"),
             icon = "https://www.roblox.com/asset/?id=9093433412",
@@ -183,6 +195,13 @@ data.objects = {
             name = "Quarter Cylinder"
         },
     
+        {
+            tag = "cylinderWedge",
+            new = find("CylinderWedge"),
+            icon = "rbxassetid://9483381627",
+            name = "Cylinder Wedge"
+        },
+
         {
             tag = "curvedSlant",
             new = find("CurvedSlant"),
@@ -308,7 +327,30 @@ data.objects = {
             icon = "rbxassetid://9172667965",
             name = "Neon Sign"
         },
-    }
+    },
+
+    dev = {
+        {
+            tag = "developmentPart",
+            new = find("DevelopmentPart"),
+            icon = "rbxassetid://9483406911",
+            name = "Development Part"
+        },
+
+        {
+            tag = "developmentMirror",
+            new = find("DevelopmentMirror"),
+            icon = "rbxassetid://9483381626",
+            name = "Development Mirror"
+        },
+
+        {
+            tag = "developmentHinge",
+            new = find("DevelopmentHinge"),
+            icon = "rbxassetid://9483381623",
+            name = "Development Hinge"
+        },
+    },
 }
 
 function data.find(tag)
