@@ -91,6 +91,7 @@ local function insert(object)
 
     object.Parent = parent
     object.Position = newPosition
+    object.Anchored = true
 
     local function elevate()
         while #workspace:GetPartsInPart(object) > 0 do
