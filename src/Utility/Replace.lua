@@ -29,7 +29,7 @@ local Spring = Fusion.Spring
 local unwrap = require(FusionAssets:WaitForChild("Unwrap"))
 
 local function replace(object)
-    local basePartProps = { -- Hey CriticalDucky! Why are you doing this? It's super inefficient! 
+    local basePartProps = { -- I want to minimize HTTP requests. Sorry for doing this.
 
     }
 
