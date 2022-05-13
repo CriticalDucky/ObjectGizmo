@@ -14,6 +14,7 @@ local colorEdit = require(Utility:WaitForChild("ColorEdit"))
 local connections = require(WrapUp:WaitForChild("Connections"))
 local data = require(DataFolder:WaitForChild("Data"))
 local insert = require(Utility:WaitForChild("Insert"))
+local replace = require(Utility:WaitForChild("Replace"))
 
 local Component = require(FusionAssets:WaitForChild("Component"))
 
@@ -35,17 +36,18 @@ local InsertButton = Component "InsertButton"
 local component = function()
     local buttons = {}
     
-    for k, v in pairs(data.objects) do
-        local class = k
-
-        for i, v in ipairs(v) do
+    for class, classTable in pairs(data.objects) do
+        for order, object in ipairs(classTable) do
             table.insert(buttons, InsertButton {
-                Object = v,
+                Object = object,
                 ObjectColor = data.classes[class].color,
-                Icon = v.icon,
-                LayoutOrder = i + 500 * data.classes[class].order,
-                OnActivated = function()
-                    insert(v)
+                Icon = object.icon,
+                LayoutOrder = order + 500 * data.classes[class].order,
+                OnLeftActivated = function()
+                    insert(object)
+                end,
+                OnRightActivated = function()
+                    replace(object)
                 end
             })
         end

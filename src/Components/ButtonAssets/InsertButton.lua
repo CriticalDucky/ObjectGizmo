@@ -33,11 +33,17 @@ local unwrap = require(FusionAssets:WaitForChild("Unwrap"))
 local component = function(props)
     local themeState = theme.getTheme("MainBackground")
     local objectColor = props.ObjectColor or Color3.fromRGB(255, 115, 0)
-    local onActivated = props.OnActivated
+    local onLeftActivated = props.OnLeftActivated
+    local onRightActivated = props.OnRightActivated
     local object = props.Object
     
     local hovering = State(false)
-    local clicking = State(false)
+    local leftClicking = State(false)
+    local rightClicking = State(false)
+
+    local clicking = Computed(function()
+        return leftClicking:get() or rightClicking:get()
+    end)
 
     local idleButtonColor = Computed(function()
         return colorEdit(themeState:get(), {val = -0.05}, true)
@@ -105,7 +111,8 @@ local component = function(props)
 
         [OnEvent "MouseLeave"] = function()
             hovering:set(false)
-            clicking:set(false)
+            leftClicking:set(false)
+            rightClicking:set(false)
             
             if currentInsertHover:get() == object then
                 currentInsertHover:set(nil)
@@ -113,14 +120,29 @@ local component = function(props)
         end,
 
         [OnEvent "MouseButton1Down"] = function()
-            clicking:set(true)
+            leftClicking:set(true)
         end,
 
         [OnEvent "MouseButton1Up"] = function()
-            if clicking:get() then
-                clicking:set(false)
-                if onActivated then
-                    onActivated()
+            if leftClicking:get() then
+                leftClicking:set(false)
+                if onLeftActivated then
+                    onLeftActivated()
+                else
+                    --print("Activated")
+                end
+            end
+        end,
+
+        [OnEvent "MouseButton2Down"] = function()
+            rightClicking:set(true)
+        end,
+
+        [OnEvent "MouseButton2Up"] = function()
+            if rightClicking:get() then
+                rightClicking:set(false)
+                if onRightActivated then
+                    onRightActivated()
                 else
                     --print("Activated")
                 end
