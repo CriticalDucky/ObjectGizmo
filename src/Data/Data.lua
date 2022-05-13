@@ -38,12 +38,12 @@ data.classes = {
 
     cone = {
         order = 7,
-        color = Color3.fromRGB(255, 12, 133)
+        color = Color3.fromRGB(133, 204, 180)
     },
 
     dev = {
         order = 8,
-        color = Color3.fromRGB(166, 12, 255)
+        color = Color3.fromRGB(0, 140, 255)
     },
 }
 
@@ -333,21 +333,21 @@ data.objects = {
         {
             tag = "developmentPart",
             new = find("DevelopmentPart"),
-            icon = "rbxassetid://9483406911",
+            icon = "rbxassetid://9613508737",
             name = "Development Part"
         },
 
         {
             tag = "developmentMirror",
             new = find("DevelopmentMirror"),
-            icon = "rbxassetid://9483381626",
+            icon = "rbxassetid://9613507806",
             name = "Development Mirror"
         },
 
         {
             tag = "developmentHinge",
             new = find("DevelopmentHinge"),
-            icon = "rbxassetid://9483381623",
+            icon = "rbxassetid://9613508061",
             name = "Development Hinge"
         },
     },
