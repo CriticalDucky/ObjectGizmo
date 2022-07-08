@@ -89,9 +89,9 @@ local function insert(object)
 
     ChangeHistoryService:SetWaypoint("Inserting object from insert plugin")
 
-    object.Parent = parent
     object.Position = newPosition
     object.Anchored = true
+    object.Parent = parent
 
     local function elevate()
         while #workspace:GetPartsInPart(object) > 0 do

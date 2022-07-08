@@ -87,6 +87,7 @@ local function replace(object)
             end
 
             selected:Remove()
+            selected = nil
         else
             if not errorHappened then
                 errorHappened = true
