@@ -94,15 +94,45 @@ local function insert(object)
     object.Parent = parent
 
     local function elevate()
-        while #workspace:GetPartsInPart(object) > 0 do
+        local timeout = 2000
+        local timeoutReached = false
+
+        local originalPosition = object.Position
+
+        while #workspace:GetPartsInPart(object) > 0 and not timeoutReached do
+            timeout -= 1
+
+            if timeout <= 0 then
+                timeoutReached = true
+            end
+
             object.Position += Vector3.new(0, 1, 0)
         end
 
-        repeat
-            object.Position += Vector3.new(0, -0.001, 0)
-        until #workspace:GetPartsInPart(object) > 0
+        if not timeoutReached then
+            local timeout = 1000
+            local timeoutReached = false
 
-        object.Position += Vector3.new(0, 0.001, 0)
+            repeat
+                timeout -= 1
+
+                if timeout <= 0 then
+                    timeoutReached = true
+                end
+
+                object.Position -= Vector3.new(0, 0.001, 0)
+            until #workspace:GetPartsInPart(object) > 0 or timeoutReached
+
+            if not timeoutReached then
+                object.Position += Vector3.new(0, 0.001, 0)
+            else
+                object.Position = originalPosition
+                warn("Object elevation timed out: 2")
+            end   
+        else
+            object.Position = originalPosition
+            warn("Object elevation timed out: 1")
+        end
     end
 
     if void then
