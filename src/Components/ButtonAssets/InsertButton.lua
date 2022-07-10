@@ -73,11 +73,11 @@ local component = function(props)
         BackgroundColor3 = colorSpring,
         --BackgroundTransparency = 0.9,
         ImageTransparency = 1,
-        LayoutOrder = props.LayoutOrder, 
+        LayoutOrder = props.LayoutOrder,
 
         [Children] = {
             New "UICorner" {
-                CornerRadius = UDim.new(0, 4)
+                CornerRadius = UDim.new(0, constants.BUTTON_ROUNDING)
             },
 
             New "ImageLabel" {

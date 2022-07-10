@@ -4,7 +4,8 @@ local constants = {
     GRANTED_BAR_SPACE = 16,
     
     BUTTON_SIZE = 48,
-    ICON_HOVER_SIZE = 36,
+    BUTTON_ROUNDING = 4,
+    ICON_HOVER_SIZE = 32,
     ICON_SIZE = 24,
 }
 
