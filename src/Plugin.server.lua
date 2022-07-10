@@ -25,20 +25,22 @@ local pluginBase = Component "PluginBase"
 local pluginEnabled = State(false)
 
 local toolbar do
-    local name = "Critical Suite"
+    local name = "Object Gizmo"
 
-    local toolbarValue = CoreGui:FindFirstChild("CriticalSuiteToolbar")
+    -- local toolbarValue = CoreGui:FindFirstChild("CriticalSuiteToolbar")
 
-    if not toolbarValue then
-        toolbarValue = Instance.new("ObjectValue")
-        toolbarValue.Name = "CriticalSuiteToolbar"
-        toolbarValue.Value = plugin:CreateToolbar(name)
-        toolbarValue.Parent = CoreGui
-    elseif not toolbarValue.Value then
-        toolbarValue.Value = plugin:CreateToolbar(name)
-    end
+    -- if not toolbarValue then
+    --     toolbarValue = Instance.new("ObjectValue")
+    --     toolbarValue.Name = "CriticalSuiteToolbar"
+    --     toolbarValue.Value = plugin:CreateToolbar(name)
+    --     toolbarValue.Parent = CoreGui
+    -- elseif not toolbarValue.Value then
+    --     toolbarValue.Value = plugin:CreateToolbar(name)
+    -- end
 
-    toolbar = toolbarValue.Value
+    -- toolbar = toolbarValue.Value
+
+    toolbar = plugin:CreateToolbar(name)
 end
 
 local enableButton = toolbar:CreateButton("OpenObjectGizmo", "Open Objects", "rbxassetid://9149212722", "Object Gizmo")
