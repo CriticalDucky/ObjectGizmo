@@ -24,12 +24,11 @@ local New = Fusion.New
 local Children = Fusion.Children
 local OnEvent = Fusion.OnEvent
 local OnChange = Fusion.OnChange
-local State = Fusion.State
+local Value = Fusion.Value
 local Computed = Fusion.Computed
-local Compat = Fusion.Compat
+local Observer = Fusion.Observer
 local Spring = Fusion.Spring
-
-local unwrap = require(FusionAssets:WaitForChild("Unwrap"))
+local unwrap = Fusion.unwrap
 
 local InsertButton = Component "InsertButton"
 

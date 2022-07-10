@@ -1,6 +1,6 @@
 local PluginFolder = script:FindFirstAncestor("ObjectsPlugin")
 local FusionAssets = PluginFolder:WaitForChild("FusionAssets")
 local Fusion = require(FusionAssets:WaitForChild("Fusion"))
-local State = Fusion.State
+local Value = Fusion.Value
 
-return State(nil)
+return Value(nil)

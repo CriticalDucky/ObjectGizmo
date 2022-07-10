@@ -1,6 +1,7 @@
 local PluginFolder = script:FindFirstAncestor("ObjectsPlugin")
 
 local Utility = PluginFolder:WaitForChild("Utility")
+
 local WrapUp = PluginFolder:WaitForChild("WrapUp")
 local FusionAssets = PluginFolder:WaitForChild("FusionAssets")
 
@@ -12,6 +13,7 @@ local waitForDescendant = require(Utility:WaitForChild("WaitForDescendant"))
 local theme = require(Utility:WaitForChild("Theme"))
 local colorEdit = require(Utility:WaitForChild("ColorEdit"))
 local connections = require(WrapUp:WaitForChild("Connections"))
+local currentInsertHover = require(Utility:WaitForChild("CurrentInsertHover"))
 
 local Component = require(FusionAssets:WaitForChild("Component"))
 
@@ -21,12 +23,11 @@ local New = Fusion.New
 local Children = Fusion.Children
 local OnEvent = Fusion.OnEvent
 local OnChange = Fusion.OnChange
-local State = Fusion.State
+local Value = Fusion.Value
 local Computed = Fusion.Computed
-local Compat = Fusion.Compat
+local Observer = Fusion.Observer
 local Spring = Fusion.Spring
-
-local unwrap = require(FusionAssets:WaitForChild("Unwrap"))
+local unwrap = Fusion.unwrap
 
 local component = function()
     local frame = New "Frame" {

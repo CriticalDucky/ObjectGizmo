@@ -4,7 +4,7 @@ local WrapUp = PluginFolder:WaitForChild("WrapUp")
 local FusionAssets = PluginFolder:WaitForChild("FusionAssets")
 local Fusion = require(FusionAssets:WaitForChild("Fusion"))
 
-local State = Fusion.State
+local Value = Fusion.Value
 
 local connections = require(WrapUp:WaitForChild("Connections"))
 
@@ -19,7 +19,7 @@ local function searchForTheme(tag, mod)
     local tableTag = themes[tag] or {}
     themes[tag] = tableTag
 
-    local state = tableTag[mod or "Default"] or State(Theme:GetColor(Enum.StudioStyleGuideColor[tag], Enum.StudioStyleGuideModifier[mod or "Default"]))
+    local state = tableTag[mod or "Default"] or Value(Theme:GetColor(Enum.StudioStyleGuideColor[tag], Enum.StudioStyleGuideModifier[mod or "Default"]))
     tableTag[mod or "Default"] = state
 
     if not state then error("Error with searchForTheme input/function") end

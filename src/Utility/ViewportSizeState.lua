@@ -20,14 +20,13 @@ local New = Fusion.New
 local Children = Fusion.Children
 local OnEvent = Fusion.OnEvent
 local OnChange = Fusion.OnChange
-local State = Fusion.State
+local Value = Fusion.Value
 local Computed = Fusion.Computed
-local Compat = Fusion.Compat
+local Observer = Fusion.Observer
 local Spring = Fusion.Spring
+local unwrap = Fusion.unwrap
 
-local unwrap = require(FusionAssets:WaitForChild("Unwrap"))
-
-local viewportSizeState = State()
+local viewportSizeState = Value()
 
 local function updateState(camera: Camera)
     viewportSizeState:set(camera.ViewportSize)

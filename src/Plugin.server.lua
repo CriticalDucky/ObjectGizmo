@@ -14,15 +14,15 @@ local currentInsertHover = require(Utility:WaitForChild("CurrentInsertHover"))
 
 local Fusion = require(FusionAssets:WaitForChild("Fusion"))
 
-local State = Fusion.State
-local Compat = Fusion.Compat
+local Value = Fusion.Value
+local Observer = Fusion.Observer
 
 local Component = require(FusionAssets:WaitForChild("Component"))
 
 local connections = require(WrapUp:WaitForChild("Connections"))
 
 local pluginBase = Component "PluginBase"
-local pluginEnabled = State(false)
+local pluginEnabled = Value(false)
 
 local toolbar do
     local name = "Object Gizmo"
@@ -80,7 +80,7 @@ do
     local accountingValue = 0
     local text = constants.WIDGET_NAME
 
-    connections:add(Compat(currentInsertHover):onChange(function()
+    connections:add(Observer(currentInsertHover):onChange(function()
         local object = currentInsertHover:get()
     
         if object ~= nil then
@@ -102,7 +102,7 @@ do
     end))
 end
 
-connections:add(Compat(pluginEnabled):onChange(function()
+connections:add(Observer(pluginEnabled):onChange(function()
     widget.Enabled = pluginEnabled:get()
 end))
 

@@ -23,12 +23,11 @@ local New = Fusion.New
 local Children = Fusion.Children
 local OnEvent = Fusion.OnEvent
 local OnChange = Fusion.OnChange
-local State = Fusion.State
+local Value = Fusion.Value
 local Computed = Fusion.Computed
-local Compat = Fusion.Compat
+local Observer = Fusion.Observer
 local Spring = Fusion.Spring
-
-local unwrap = require(FusionAssets:WaitForChild("Unwrap"))
+local unwrap = Fusion.unwrap
 
 local component = function(props)
     local themeState = theme.getTheme("MainBackground")
@@ -37,9 +36,9 @@ local component = function(props)
     local onRightActivated = props.OnRightActivated
     local object = props.Object
     
-    local hovering = State(false)
-    local leftClicking = State(false)
-    local rightClicking = State(false)
+    local hovering = Value(false)
+    local leftClicking = Value(false)
+    local rightClicking = Value(false)
 
     local clicking = Computed(function()
         return leftClicking:get() or rightClicking:get()

@@ -19,17 +19,16 @@ local New = Fusion.New
 local Children = Fusion.Children
 local OnEvent = Fusion.OnEvent
 local OnChange = Fusion.OnChange
-local State = Fusion.State
+local Value = Fusion.Value
 local Computed = Fusion.Computed
-local Compat = Fusion.Compat
+local Observer = Fusion.Observer
 local Spring = Fusion.Spring
-
-local unwrap = require(FusionAssets:WaitForChild("Unwrap"))
+local unwrap = Fusion.unwrap
 
 local ObjectButtons = Component "ObjectButtons"
 
 local component = function(widget)
-    local mouseIn = State(false)
+    local mouseIn = Value(false)
 
     local scrollbarColor = Computed(function()
         local currentMouseIn = mouseIn:get()
@@ -98,7 +97,7 @@ local component = function(widget)
         }
     }
 
-    connections:add(Compat(widgetSize.mode):onChange(function()
+    connections:add(Observer(widgetSize.mode):onChange(function()
         scrollingFrame.CanvasPosition = Vector2.new(0, 0)
     end))
 
